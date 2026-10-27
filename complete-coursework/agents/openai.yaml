@@ -1,0 +1,4 @@
+interface:
+  display_name: "作业完成与核验"
+  short_description: "完成并核验课程作业，保留必要推导，交付精简答案、可运行代码与提交文件"
+  default_prompt: "使用 $complete-coursework 按原题和已确认的作业要求完成本次作业，给出精简但步骤完整的答案，并验证最终文件。"
