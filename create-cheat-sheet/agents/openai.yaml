@@ -1,0 +1,4 @@
+interface:
+  display_name: "制作考试 CP"
+  short_description: "把课件、习题和样卷整理成按授课顺序排列的考试 CP，交付核验后的 PDF 与可编辑源码"
+  default_prompt: "使用 $create-cheat-sheet 根据本次课件、tutorial、作业和样卷制作 CP，按 lecture 顺序压缩重点，遵从已确认的范围与打印限制，并交付核验后的 PDF 和可编辑源文件。"

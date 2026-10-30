@@ -8,6 +8,7 @@ A small, curated collection of reusable agent skills. Each skill is self-contain
 | --- | --- | --- |
 | [作业完成与核验 (`complete-coursework`)](complete-coursework/SKILL.md) | Completes, revises, and checks coursework deliverables while preserving essential reasoning and honest validation. | [`complete-coursework/`](complete-coursework/) |
 | [Blackboard 课件下载 (`blackboard-downloader`)](blackboard-downloader/SKILL.md) | Downloads specified course attachments, preserves course folders, and verifies files using a shared local runtime. | [`blackboard-downloader/`](blackboard-downloader/) |
+| [考试 CP 制作 (`create-cheat-sheet`)](create-cheat-sheet/SKILL.md) | Builds lecture-ordered exam cheat sheets from course materials, with a verified printable PDF and editable source. | [`create-cheat-sheet/`](create-cheat-sheet/) |
 
 ## Use a skill
 
@@ -31,11 +32,16 @@ You can also download a ZIP from the repository's **Code → Download ZIP** menu
 │   ├── SKILL.md
 │   ├── agents/
 │   └── references/
-└── complete-coursework/
+├── complete-coursework/
+│   ├── SKILL.md
+│   ├── agents/
+│   ├── references/
+│   └── scripts/
+└── create-cheat-sheet/
     ├── SKILL.md
     ├── agents/
     ├── references/
-    └── scripts/
+    └── assets/
 ```
 
 Each top-level directory is one skill. A skill may include a `SKILL.md`, optional UI metadata under `agents/`, supporting material under `references/`, and helper scripts under `scripts/`.
