@@ -32,7 +32,7 @@ def unique_mapping(loader, node):
 
 UniqueLoader.add_constructor(yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG, unique_mapping)
 NAME = re.compile(r'[a-z0-9]+(?:-[a-z0-9]+)*\Z')
-RESERVED = {'scripts', 'tests', 'docs'}
+RESERVED = {'CI', 'scripts', 'tests', 'docs'}
 ALLOWLIST = '.skill-scan-allowlist.json'
 PRIVATE_PATH = re.compile(r'(?:/home/|/Users/|[A-Za-z]:[\\/]Users[\\/])[A-Za-z0-9_.-]+')
 SECRET_PATTERNS = {

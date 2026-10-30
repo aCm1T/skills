@@ -28,6 +28,10 @@ You can also download a ZIP from the repository's **Code → Download ZIP** menu
 .
 ├── README.md
 ├── SKILL_STANDARD.md
+├── CI/
+│   ├── requirements.txt
+│   ├── validate_skills.py
+│   └── tests/
 ├── blackboard-downloader/
 │   ├── SKILL.md
 │   ├── agents/
@@ -44,7 +48,7 @@ You can also download a ZIP from the repository's **Code → Download ZIP** menu
     └── assets/
 ```
 
-Each top-level directory is one skill. A skill may include a `SKILL.md`, optional UI metadata under `agents/`, supporting material under `references/`, and helper scripts under `scripts/`.
+Each skill has its own top-level directory. `CI/` holds repository validation tools, tests, and dependencies. A skill may include a `SKILL.md`, optional UI metadata under `agents/`, supporting material under `references/`, and helper scripts under `scripts/`.
 
 ## Add or update a skill
 
@@ -67,9 +71,9 @@ This is a public repository. Treat every committed file, filename, metadata fiel
 Use Python 3.10 or later, preferably in a virtual environment:
 
 ```sh
-python -m pip install -r requirements-ci.txt
-python scripts/validate_skills.py
-python -m unittest discover -s tests -v
+python -m pip install -r CI/requirements.txt
+python CI/validate_skills.py
+python -m unittest discover -s CI/tests -v
 ```
 
 The checker examines all skills and Git-tracked files, so stage intended new files before running it. GitHub Actions runs the same checks on pushes and pull requests. Tests use temporary synthetic files and do not log into Blackboard or use private coursework.

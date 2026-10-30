@@ -12,7 +12,7 @@ Before opening a change:
 - Verify links, declared files, and helper scripts; test both expected success and failure cases where practical.
 - Inspect the complete diff and any generated archive for accidental private content.
 - Update the root README skill index.
-- Stage intended files, install `requirements-ci.txt`, run `python scripts/validate_skills.py` and `python -m unittest discover -s tests -v` before pushing. CI uses these same commands.
+- Stage intended files and run the [validation commands](SKILL_STANDARD.md#9-自动检查与人工审阅) before pushing. Local checks and GitHub Actions use the tools, tests, and dependencies in `CI/`.
 
 Automated checks do not replace review of task scope, consent, external interfaces, licenses, private context, and the accuracy of completion claims. Keep public service URLs and generic authentication examples when useful; never include working credentials. Document narrow scanner false positives with a line fingerprint and reason as specified in the standard.
 

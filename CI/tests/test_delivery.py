@@ -10,7 +10,7 @@ import unittest
 import zipfile
 
 
-SCRIPT = Path(__file__).resolve().parents[1] / 'complete-coursework/scripts/verify_delivery.py'
+SCRIPT = Path(__file__).resolve().parents[2] / 'complete-coursework/scripts/verify_delivery.py'
 spec = importlib.util.spec_from_file_location('verify_delivery', SCRIPT)
 helper = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(helper)

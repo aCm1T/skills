@@ -10,8 +10,8 @@ import tempfile
 import unittest
 
 
-ROOT = Path(__file__).resolve().parents[1]
-spec = importlib.util.spec_from_file_location('validate_skills', ROOT / 'scripts/validate_skills.py')
+ROOT = Path(__file__).resolve().parents[2]
+spec = importlib.util.spec_from_file_location('validate_skills', ROOT / 'CI/validate_skills.py')
 validator = importlib.util.module_from_spec(spec)
 sys.modules[spec.name] = validator
 spec.loader.exec_module(validator)
@@ -39,6 +39,16 @@ class ValidationTests(unittest.TestCase):
 
     def test_valid_minimal_skill(self):
         self.assertEqual(self.run_check(), [])
+
+    def test_ci_is_infrastructure_but_still_scanned(self):
+        self.files['CI/validate_skills.py'] = 'print("synthetic check")\n'
+        self.assertEqual(self.run_check(), [])
+        _, skills = validator.validate(self.root, self.files)
+        self.assertEqual(skills, ['demo'])
+        self.files['CI/validate_skills.py'] = 'def broken(\n'
+        self.assertIn('python-syntax', self.rules())
+        self.files['CI/validate_skills.py'] = 'api_key = "' + 'A' * 24 + '"\n'
+        self.assertIn('credential-literal', self.rules())
 
     def test_renamed_skill_rejected(self):
         self.files['demo/SKILL.md'] = self.files['demo/SKILL.md'].replace('name: demo', 'name: other')
@@ -155,7 +165,7 @@ class ValidationTests(unittest.TestCase):
         self.run_check()
         subprocess.run(['git', 'init', '-q', str(self.root)], check=True)
         subprocess.run(['git', '-C', str(self.root), 'add', '.'], check=True)
-        result = subprocess.run([sys.executable, str(ROOT / 'scripts/validate_skills.py'), '--root', str(self.root)], capture_output=True, text=True)
+        result = subprocess.run([sys.executable, str(ROOT / 'CI/validate_skills.py'), '--root', str(self.root)], capture_output=True, text=True)
         self.assertEqual(result.returncode, 1)
         self.assertIn('missing-link-target', result.stdout)
 

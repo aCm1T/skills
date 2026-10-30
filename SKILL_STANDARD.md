@@ -15,7 +15,7 @@ skill-name/
 └── assets/                 # 可选：模板及静态资源
 ```
 
-只有 `SKILL.md` 必需；不创建无用途的目录。顶层 `scripts/`、`tests/` 和 `docs/` 为仓库公共设施，不作为 skill。
+只有 `SKILL.md` 必需；不创建无用途的目录。仓库的校验器、测试和依赖清单集中在顶层 `CI/`，不作为 skill；`scripts/`、`tests/` 和 `docs/` 也保留为公共设施目录名。
 
 本地文件引用必须存在，使用相对路径；不得依赖作者机器上的私人文件。skill 内的引用应留在该 skill 中，以便单独安装。
 
@@ -83,9 +83,9 @@ description: 完成什么任务，适用于什么请求；必要时说明容易�
 本地和 CI 使用相同命令：
 
 ```sh
-python -m pip install -r requirements-ci.txt
-python scripts/validate_skills.py
-python -m unittest discover -s tests -v
+python -m pip install -r CI/requirements.txt
+python CI/validate_skills.py
+python -m unittest discover -s CI/tests -v
 ```
 
 自动检查包括：
@@ -100,6 +100,6 @@ python -m unittest discover -s tests -v
 
 人工审阅负责：触发范围、实际可执行性、授权边界、事实及接口准确性、许可、隐私上下文、验证证据和文字质量。CI 不强制固定章节，也不以登录真实账户或处理私人课件来测试 skill。
 
-GitHub Actions 在 push、pull request 和手动触发时检查全部 skill，使用只读仓库权限，不读取用户凭据。运行检查只能发现问题；若要在主分支阻止不合格变更，需在管理员设置中要求 PR，并将 `Skills CI / validate` 对应的 `validate` 检查设为必需，核对实际显示的名称。此分支不修改仓库保护设置。
+GitHub Actions 入口保留在 `.github/workflows/skills-ci.yml`，调用 `CI/` 内的检查设施；在 push、pull request 和手动触发时检查全部 skill，使用只读仓库权限，不读取用户凭据。`CI/` 不参与 skill 发现，但其中的跟踪文件仍接受语法和隐私扫描。运行检查只能发现问题；若要在主分支阻止不合格变更，需在管理员设置中要求 PR，并将 `Skills CI / validate` 对应的 `validate` 检查设为必需，核对实际显示的名称。此分支不修改仓库保护设置。
 
 设置方法参见 [GitHub rulesets 文档](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/available-rules-for-rulesets)。检查器、工作流和例外文件的变更本身也需要人工审阅；CI 不是防止恶意修改的完整安全边界。
