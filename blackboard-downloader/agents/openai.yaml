@@ -1,0 +1,4 @@
+interface:
+  display_name: "Blackboard 课件下载"
+  short_description: "按指定课程或栏目下载 Blackboard 附件，核验完整性并按需打包"
+  default_prompt: "使用 $blackboard-downloader 下载我指定的 Blackboard 课程或栏目，核验文件完整性并保存到指定目录。"

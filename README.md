@@ -7,6 +7,7 @@ A small, curated collection of reusable agent skills. Each skill is self-contain
 | Skill | What it does | Location |
 | --- | --- | --- |
 | [作业完成与核验 (`complete-coursework`)](complete-coursework/SKILL.md) | Completes, revises, and checks coursework deliverables while preserving essential reasoning and honest validation. | [`complete-coursework/`](complete-coursework/) |
+| [Blackboard 课件下载 (`blackboard-downloader`)](blackboard-downloader/SKILL.md) | Downloads specified course attachments, preserves course folders, and verifies files using a shared local runtime. | [`blackboard-downloader/`](blackboard-downloader/) |
 
 ## Use a skill
 
@@ -25,6 +26,11 @@ You can also download a ZIP from the repository's **Code → Download ZIP** menu
 ```text
 .
 ├── README.md
+├── SKILL_STANDARD.md
+├── blackboard-downloader/
+│   ├── SKILL.md
+│   ├── agents/
+│   └── references/
 └── complete-coursework/
     ├── SKILL.md
     ├── agents/
@@ -35,6 +41,8 @@ You can also download a ZIP from the repository's **Code → Download ZIP** menu
 Each top-level directory is one skill. A skill may include a `SKILL.md`, optional UI metadata under `agents/`, supporting material under `references/`, and helper scripts under `scripts/`.
 
 ## Add or update a skill
+
+Follow [the skill standard](SKILL_STANDARD.md) and [contribution guide](CONTRIBUTING.md). The standard distinguishes automatic checks from human review; it does not require identical section headings.
 
 1. Give the skill its own top-level directory and a concise, descriptive name.
 2. Keep `SKILL.md` focused on when to use the skill and the core workflow; move detailed procedures into linked references.
@@ -47,3 +55,17 @@ Each top-level directory is one skill. A skill may include a `SKILL.md`, optiona
 ## Privacy
 
 This is a public repository. Treat every committed file, filename, metadata field, example, and script output as public. Do not add private source assignments, chat exports, personal records, credentials, or machine-specific paths.
+
+## Validate changes
+
+Use Python 3.10 or later, preferably in a virtual environment:
+
+```sh
+python -m pip install -r requirements-ci.txt
+python scripts/validate_skills.py
+python -m unittest discover -s tests -v
+```
+
+The checker examines all skills and Git-tracked files, so stage intended new files before running it. GitHub Actions runs the same checks on pushes and pull requests. Tests use temporary synthetic files and do not log into Blackboard or use private coursework.
+
+CI covers structure, file links, Python syntax and selected privacy risks. It does not establish factual correctness, complete privacy review, or task success. See [automatic checks and human review](SKILL_STANDARD.md#9-自动检查与人工审阅) for limitations and instructions for making checks required before merging.

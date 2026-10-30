@@ -32,7 +32,7 @@ description: 完成、修订或审查课程作业，交付精简但步骤完整�
 
 - 有模拟、统计计算、程序实现或性能实验：读 [数值与程序作业](references/numerical-and-programming.md)。
 - 有精简、局部修改、PDF 交付、打包或提交前检查：读 [修订与交付核验](references/revision-and-delivery.md)。
-- 需要反复检查最终 ZIP、文件哈希或包内源码一致性：使用 `scripts/verify_delivery.py`；它不代替数学审查、PDF 视觉检查或实际运行。
+- 需要反复检查最终 ZIP、文件哈希或包内源码一致性：使用 [文件完整性助手](scripts/verify_delivery.py)；它只依赖 Python 3.10 或更高版本的标准库，输入、输出、运行示例及失败状态见 [修订与交付核验](references/revision-and-delivery.md#可复用的文件完整性助手)。它不代替数学审查、PDF 视觉检查或实际运行。
 
 ## 完成时必须对得上
 

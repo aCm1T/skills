@@ -42,7 +42,7 @@
 
 ## 可复用的文件完整性助手
 
-`../scripts/verify_delivery.py` 只使用 Python 标准库。示例从作业目录运行，脚本路径按实际 skill 位置填写：
+[文件完整性助手](../scripts/verify_delivery.py) 只使用 Python 3.10 或更高版本的标准库。示例从作业目录运行，脚本路径按实际 skill 位置填写：
 
 ```sh
 python path/to/skill/scripts/verify_delivery.py --root . \
