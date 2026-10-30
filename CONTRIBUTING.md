@@ -1,19 +1,7 @@
 # Contributing
 
-Contributions should add or improve reusable skills while keeping this repository safe to publish publicly.
+The [skill standard](SKILL_STANDARD.md) is the single source of truth for authoring, privacy, validation, and publishing requirements.
 
-Follow [SKILL_STANDARD.md](SKILL_STANDARD.md), the source of truth for repository conventions. Different skills may use different section headings and optional resource directories.
-
-Before opening a change:
-
-- Keep each skill in a separate top-level directory.
-- Keep the main `SKILL.md` concise and link supporting references with relative paths.
-- Remove personal details, private coursework, chat transcripts, credentials, and machine-specific paths from all files and metadata.
-- Verify links, declared files, and helper scripts; test both expected success and failure cases where practical.
-- Inspect the complete diff and any generated archive for accidental private content.
-- Update the root README skill index.
-- Stage intended files and run the [validation commands](SKILL_STANDARD.md#9-自动检查与人工审阅) before pushing. Local checks and GitHub Actions use the tools, tests, and dependencies in `CI/`.
-
-Automated checks do not replace review of task scope, consent, external interfaces, licenses, private context, and the accuracy of completion claims. Keep public service URLs and generic authentication examples when useful; never include working credentials. Document narrow scanner false positives with a line fingerprint and reason as specified in the standard.
-
-Do not include user-specific source documents or completed assignments in this repository.
+1. Make a focused change and update the [README skill index](README.md#available-skills) when adding, renaming, or removing a skill.
+2. Stage the intended files and run the [validation commands](SKILL_STANDARD.md#9-自动检查与人工审阅).
+3. Review the complete diff before publishing; describe the change and actual validation results in the commit or pull request.
